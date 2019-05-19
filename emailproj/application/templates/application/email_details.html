@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Compose Email 
+{% endblock %}
+
+{% block header %}
+Compose Email 
+{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="row mb-4">
+    <div class="col-12">
+      {{ form.email_id|as_crispy_field }}
+    </div>
+
+    <div class="col-12 input-group mb-3">
+      <div class="custom-file">
+        <input type="file" name="csv_file" id="csv_file" class="custom-file-input" aria-describedby="inputGroupFileAddon01"  onchange="window.alert('file uploaded')">
+        <label class="custom-file-label" for="csv_file">Choose file</label>
+      </div>
+    </div>
+    </div>
+
+    <div class="col-12">
+      {{ form.subject|as_crispy_field }}
+    </div>
+    <div class="col-12">
+      {{ form.body|as_crispy_field }}
+    </div>
+    <div class="col-12">
+      {{ form.cc|as_crispy_field }}
+    </div>
+    <div class="col-12">
+      {{ form.bcc|as_crispy_field }}
+    </div>
+    <div class="col-12">
+      {{ form.created_at|as_crispy_field }}
+    </div>
+    
+    <div class="col-12">
+      <button type='submit' class="btn btn-primary"> Send it</button>
+      <a class="btn btn-default" href="/"> Back </a>
+    </div>
+  </div>
+</form>
+{% endblock %}
